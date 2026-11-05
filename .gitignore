@@ -1,0 +1,9 @@
+# Terraform : binaires et artefacts locaux (regenerables)
+partie3/.terraform/
+partie3/*.tfstate
+partie3/*.tfstate.*
+partie3/.terraform.tfstate.lock.info
+
+# Logs et divers
+*.log
+.DS_Store

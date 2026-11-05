@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Partie 3 — Infrastructure as Code : Ansible</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 40px; text-align: center; }
+    .card { background: #1e293b; border-radius: 12px; padding: 35px; max-width: 720px; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #334155; }
+    h1 { color: #38bdf8; margin-bottom: 5px; }
+    .badge { display: inline-block; background: #059669; color: white; padding: 6px 16px; border-radius: 20px; font-size: 14px; margin: 12px 0; font-weight: bold; }
+    .info { background: #0f172a; border-left: 4px solid #38bdf8; text-align: left; padding: 20px; margin: 25px 0; border-radius: 4px; font-size: 16px; line-height: 1.9; }
+    .status { color: #4ade80; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Partie 3 — Infrastructure as Code</h1>
+    <div class="badge">Provisionné par Terraform · Configuré par Ansible</div>
+    <p>Serveur Web Nginx déployé et configuré avec succès !</p>
+    <div class="info">
+      <p><strong>Nom de l'étudiant :</strong> Yahya AHMANE</p>
+      <p><strong>Numéro d'étudiant (CNE) :</strong> R139310095</p>
+      <p><strong>Nom de l'instance :</strong> {{ inventory_hostname }}</p>
+      <p><strong>Adresse IP flottante :</strong> {{ ansible_host }}</p>
+      <p><strong>Statut du service :</strong> <span class="status">● Nginx démarré et activé au démarrage</span></p>
+    </div>
+    <p style="color: #94a3b8; font-size: 13px;">Projet Cloud Intelligence — Université Abdelmalek Essaâdi</p>
+  </div>
+</body>
+</html>
+

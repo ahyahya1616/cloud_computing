@@ -1,0 +1,29 @@
+---
+- name: "Configuration du serveur Web Nginx avec Ansible (Partie 3)"
+  hosts: webservers
+  become: true
+  tasks:
+    - name: "Mettre à jour le cache du gestionnaire de paquets apt"
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: "Installer le serveur Web Nginx"
+      apt:
+        name: nginx
+        state: present
+
+    - name: "Démarrer et activer le service Nginx au démarrage"
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: "Déployer la page Web personnalisée affichant l'étudiant et l'instance"
+      template:
+        src: index.html.j2
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
