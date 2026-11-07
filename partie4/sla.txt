@@ -1,0 +1,52 @@
+================================================================================
+SERVICE LEVEL AGREEMENT (SLA) - OPENSTACK COMPUTE INSTANCES
+================================================================================
+Date d'effet       : 06 Novembre 2026
+Fournisseur        : Cloud Intelligence University Provider (OpenStack DevStack)
+Client / Utilisateur: Yahya Ahmane (Projet: demo)
+Version            : 1.0
+================================================================================
+
+1. OBJET ET PÉRIMÈTRE
+---------------------
+Le présent accord formalise les engagements de niveau de service (SLA) concernant 
+la disponibilité des instances virtuelles exécutées sur la plateforme OpenStack.
+Instances couvertes :
+  - sla-instance-1
+  - sla-instance-2
+
+2. OBJECTIF DE NIVEAU DE SERVICE (SLO)
+--------------------------------------
+- Métrique ciblée           : Disponibilité quotidienne (Daily Availability).
+- Seuil minimal garanti     : 99,50 %
+- Période d'évaluation      : Quotidienne (24 heures consécutives).
+
+3. MÉTHODE DE MESURE ET DÉFINITION DE "DISPONIBLE"
+--------------------------------------------------
+- Fréquence des sondes      : Une mesure toutes les 5 minutes (soit 288 sondes / jour).
+- Définition d'une instance "Disponible" (UP) :
+    Une instance est dite disponible SI ET SEULEMENT SI :
+    1. L'API OpenStack Nova indique l'état 'ACTIVE' et l'état d'alimentation 'RUNNING'.
+    2. L'instance répond positivement au test de connectivité réseau (Ping ICMP).
+    Dans le cas contraire, la sonde est comptabilisée comme "INDISPONIBLE" (DOWN).
+
+- Formule de calcul :
+    Disponibilité (%) = (Nombre de sondes "UP" / Nombre total de sondes) * 100
+
+- Tolérance sur 24 heures (288 mesures) :
+    * Mesures minimales requises : 288 * 0.995 = 286.56  =>  287 mesures réussies.
+    * Échecs tolérés             : Maximum 1 mesure en échec sur 24h.
+    * Temps d'indisponibilité max: 7,2 minutes par jour (5 min à l'échelle d'échantillonnage).
+
+4. PÉNALITÉS ET CRÉDITS DE SERVICE (SI OBJECTIF NON ATTEINT)
+-------------------------------------------------------------
+Si la disponibilité constatée sur la période est inférieure au seuil contractuel :
+- De 98,00 % à 99,49 % : Crédit de service de 10 % sur la facturation journalière.
+- Inférieur à 98,00 %   : Crédit de service de 25 % (Incident majeur).
+
+5. RAPPORT D'EXÉCUTION ET AUDIT
+--------------------------------
+Le rapport de surveillance issu du programme de monitoring Python sera annexé à la fin 
+de la période pour attester du respect ou de la violation de cet accord.
+================================================================================
+

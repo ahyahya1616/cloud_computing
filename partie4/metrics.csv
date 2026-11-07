@@ -1,0 +1,9 @@
+timestamp,instance_name,instance_id,ip_address,nova_status,power_state,ping_status,available
+2026-11-07 11:51:12,sla-instance-1,e514cf9e-e09e-4d37-b9ec-6ffa8e101bde,10.20.20.152,ACTIVE,1,SUCCESS,UP
+2026-11-07 11:51:12,sla-instance-2,689ff4da-213e-41d4-9de7-99ab886a535e,10.20.20.139,ACTIVE,1,SUCCESS,UP
+2026-11-07 11:51:17,sla-instance-1,e514cf9e-e09e-4d37-b9ec-6ffa8e101bde,10.20.20.152,ACTIVE,1,SUCCESS,UP
+2026-11-07 11:51:17,sla-instance-2,689ff4da-213e-41d4-9de7-99ab886a535e,10.20.20.139,ACTIVE,1,SUCCESS,UP
+2026-11-07 11:51:21,sla-instance-1,e514cf9e-e09e-4d37-b9ec-6ffa8e101bde,10.20.20.152,ACTIVE,1,FAILURE,DOWN
+2026-11-07 11:51:21,sla-instance-2,689ff4da-213e-41d4-9de7-99ab886a535e,10.20.20.139,ACTIVE,1,SUCCESS,UP
+2026-11-07 11:51:28,sla-instance-1,e514cf9e-e09e-4d37-b9ec-6ffa8e101bde,10.20.20.152,SHUTOFF,4,FAILURE,DOWN
+2026-11-07 11:51:28,sla-instance-2,689ff4da-213e-41d4-9de7-99ab886a535e,10.20.20.139,ACTIVE,1,SUCCESS,UP

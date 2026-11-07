@@ -1,0 +1,81 @@
+{
+  "sla_contract": {
+    "title": "Service Level Agreement - OpenStack Compute Instances",
+    "version": "1.0",
+    "effective_date": "2026-11-06",
+    "provider": {
+      "name": "Cloud Intelligence University Provider",
+      "platform": "OpenStack DevStack"
+    },
+    "consumer": {
+      "name": "Yahya Ahmane",
+      "project": "demo"
+    },
+    "scope": {
+      "target_instances": [
+        "sla-instance-1",
+        "sla-instance-2"
+      ],
+      "monitored_services": [
+        "Nova Compute API",
+        "ICMP Connectivity"
+      ]
+    },
+    "service_level_objective": {
+      "metric": "Daily Availability",
+      "target_threshold_percent": 99.5,
+      "evaluation_period": "Daily (24 hours)"
+    },
+    "measurement_methodology": {
+      "sampling_interval_minutes": 5,
+      "total_expected_samples_daily": 288,
+      "definition_of_available": "An instance is considered AVAILABLE (UP) if its OpenStack Nova status is ACTIVE, its power state is RUNNING, and it responds to network verification (ping/ICMP). Otherwise, it is marked as UNAVAILABLE (DOWN).",
+      "availability_formula": "(successful_samples / total_samples) * 100",
+      "max_tolerated_failures_daily": 1,
+      "max_tolerated_downtime_minutes": 7.2
+    },
+    "penalty_policy": {
+      "description": "Remediation and service credit policy in case of SLA violation (availability < 99.5%)",
+      "credit_tiers": [
+        {
+          "availability_range": ">= 99.5%",
+          "service_credit_percent": 0,
+          "status": "SLA Compliant"
+        },
+        {
+          "availability_range": "98.0% - 99.49%",
+          "service_credit_percent": 10,
+          "status": "Minor Breach"
+        },
+        {
+          "availability_range": "< 98.0%",
+          "service_credit_percent": 25,
+          "status": "Critical Breach"
+        }
+      ]
+    }
+  },
+  "execution_report": {
+    "last_updated": "2026-11-07T11:51:31.737192",
+    "target_threshold_percent": 99.5,
+    "instances": {
+      "sla-instance-1": {
+        "instance_id": "e514cf9e-e09e-4d37-b9ec-6ffa8e101bde",
+        "total_probes": 4,
+        "up_probes": 2,
+        "down_probes": 2,
+        "availability_percent": 50.0,
+        "sla_compliant": false
+      },
+      "sla-instance-2": {
+        "instance_id": "689ff4da-213e-41d4-9de7-99ab886a535e",
+        "total_probes": 4,
+        "up_probes": 4,
+        "down_probes": 0,
+        "availability_percent": 100.0,
+        "sla_compliant": true
+      }
+    },
+    "global_sla_met": false
+  }
+}

@@ -4,6 +4,14 @@ partie3/*.tfstate
 partie3/*.tfstate.*
 partie3/.terraform.tfstate.lock.info
 
+# Environnements virtuels Python (ne jamais pusher)
+**/venv/
+**/__pycache__/
+*.pyc
+
+# Fichiers sensibles OpenStack contenant des mots de passe
+partie4/clouds.yaml
+
 # Logs et divers
 *.log
 .DS_Store
