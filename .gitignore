@@ -15,3 +15,12 @@ partie4/clouds.yaml
 # Logs et divers
 *.log
 .DS_Store
+
+# Fichiers de compilation Java / Maven
+partie1/target/
+*.class
+.project
+.classpath
+.settings/
+*.iml
+.idea/
