@@ -1,16 +1,17 @@
 package org.uae.cloudsim;
 
 /**
- * Responsabilité unique : Modèle de données pour stocker les métriques d'évaluation
- * d'un scénario de simulation CloudSim Plus.
+ * Responsabilité unique : Modèle de données stockant toutes les métriques d'évaluation
+ * demandées (réponse, attente, exécution, utilisation hôtes, coût et VM créées).
  */
 public record SimulationResult(
         String scenarioName,
         int cloudletsTotal,
-        int cloudletsFinished,
         int vmsCount,
-        double avgExecTime,
         double avgWaitTime,
+        double avgExecTime,
+        double avgResponseTime,
+        double avgHostCpuUtilizationPercent,
+        double totalCost,
         double simulationFinishTime
 ) {}
-

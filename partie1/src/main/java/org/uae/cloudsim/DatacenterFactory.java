@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Responsabilité unique : Création et instanciation du Datacenter universitaire de l'UAE
- * avec ses serveurs hôtes physiques multi-cœurs.
+ * Responsabilité unique : Création du Datacenter universitaire de l'UAE,
+ * activation des statistiques d'utilisation des hôtes et configuration des coûts.
  */
 public class DatacenterFactory {
 
@@ -32,10 +32,19 @@ public class DatacenterFactory {
                     SimulationConfig.HOST_STORAGE,
                     peList
             ).setVmScheduler(new VmSchedulerTimeShared());
+            host.enableUtilizationStats();
             hosts.add(host);
         }
-        return new DatacenterSimple(simulation, hosts, new VmAllocationPolicySimple())
-                .setSchedulingInterval(10.0); // Évaluation toutes les 10 secondes (rapide et efficace)
+
+        Datacenter datacenter = new DatacenterSimple(simulation, hosts, new VmAllocationPolicySimple())
+                .setSchedulingInterval(SimulationConfig.DATACENTER_SCHEDULING_INTERVAL);
+
+        datacenter.getCharacteristics()
+                .setCostPerSecond(SimulationConfig.COST_PER_SECOND)
+                .setCostPerMem(SimulationConfig.COST_PER_MEM)
+                .setCostPerStorage(SimulationConfig.COST_PER_STORAGE)
+                .setCostPerBw(SimulationConfig.COST_PER_BW);
+
+        return datacenter;
     }
 }
-

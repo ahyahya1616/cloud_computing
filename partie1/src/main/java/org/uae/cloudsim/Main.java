@@ -8,8 +8,8 @@ import java.util.List;
  * Coordonne les 4 scénarios d'évaluation :
  *  1. Période Normale (TimeShared)
  *  2. Période Normale (SpaceShared)
- *  3. Période de Pointe (Inscriptions bacheliers - 4 VM fixes)
- *  4. Période de Pointe (Inscriptions bacheliers - Avec HorizontalVmScaling)
+ *  3. Période de Pointe (4 VM fixes - Sans Auto-Scaling)
+ *  4. Période de Pointe (Avec HorizontalVmScalingSimple)
  */
 public class Main {
 
@@ -24,45 +24,40 @@ public class Main {
         // 1. Période Normale avec politique TimeShared
         results.add(SimulationEngine.executeScenario(
                 "1. Période Normale (TimeShared)",
-                SimulationConfig.NORMAL_CLOUDLETS,
-                SimulationConfig.NORMAL_CLOUDLETS_LENGTH,
+                SimulationConfig.NORMAL_CLOUDLETS_PER_WAVE,
+                SimulationConfig.NORMAL_CLOUDLET_LENGTH,
                 false,
-                true,
-                SimulationConfig.INITIAL_VMS
+                true
         ));
 
         // 2. Période Normale avec politique SpaceShared
         results.add(SimulationEngine.executeScenario(
                 "2. Période Normale (SpaceShared)",
-                SimulationConfig.NORMAL_CLOUDLETS,
-                SimulationConfig.NORMAL_CLOUDLETS_LENGTH,
+                SimulationConfig.NORMAL_CLOUDLETS_PER_WAVE,
+                SimulationConfig.NORMAL_CLOUDLET_LENGTH,
                 false,
-                false,
-                SimulationConfig.INITIAL_VMS
+                false
         ));
 
-        // 3. Période de Pointe SANS Auto-Scaling (Charge lourde sur 4 VM fixes)
+        // 3. Période de Pointe SANS Auto-Scaling (4 VM fixes)
         results.add(SimulationEngine.executeScenario(
-                "3. Période de Pointe (Fixe 4 VM - Inscriptions)",
-                SimulationConfig.PEAK_CLOUDLETS,
-                SimulationConfig.PEAK_CLOUDLETS_LENGTH,
+                "3. Période de Pointe (4 VM fixes)",
+                SimulationConfig.PEAK_CLOUDLETS_PER_WAVE,
+                SimulationConfig.PEAK_CLOUDLET_LENGTH,
                 false,
-                false, // SpaceShared : provoque une file d'attente massive montrant la saturation !
-                4
+                false
         ));
 
-        // 4. Période de Pointe AVEC Auto-Scaling (HorizontalVmScaling : absorption du pic à 12 VM)
+        // 4. Période de Pointe AVEC HorizontalVmScalingSimple (démarre à 4 VM et s'adapte)
         results.add(SimulationEngine.executeScenario(
-                "4. Période de Pointe AVEC Auto-Scaling (HorizontalVmScaling)",
-                SimulationConfig.PEAK_CLOUDLETS,
-                SimulationConfig.PEAK_CLOUDLETS_LENGTH,
+                "4. Période de Pointe (HorizontalVmScaling)",
+                SimulationConfig.PEAK_CLOUDLETS_PER_WAVE,
+                SimulationConfig.PEAK_CLOUDLET_LENGTH,
                 true,
-                false, // Même ordonnanceur mais avec élasticité horizontale (12 VM allouées)
-                12
+                false
         ));
 
-        // 5. Affichage du tableau comparatif
+        // 5. Affichage du tableau comparatif complet
         ResultPrinter.printComparisonTable(results);
     }
 }
-

@@ -24,3 +24,8 @@ partie1/target/
 .settings/
 *.iml
 .idea/
+
+*.zip
+*.tar.gz
+
+rapport_latex/
